@@ -28,12 +28,13 @@ self.port.on('display', function(commands) {
 
         require([ 'gcli/index', 'demo/index' ], function(gcli) {
             for(idx in commands.commands.commands) {
+              console.log('on display: ', commands.commands.commands[idx]);
               if (commands.commands.commands[idx].hasOwnProperty('exec')) {
                 eval("commands.commands.commands[idx].exec = " + commands.commands.commands[idx].exec);
               }
               gcli.addCommand(commands.commands.commands[idx]);
             }
-     
+
           gcli.createDisplay();
         });
     } + ')('+ JSON.stringify(commands) +');';
