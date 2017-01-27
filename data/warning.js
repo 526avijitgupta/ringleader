@@ -4,25 +4,20 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-var cancelClicked = function() {
-  self.port.emit('cancel','Nope!');
-};
-
-var confirmClicked = function() {
+document.getElementById('confirm').addEventListener('click', function() {
   if (document.getElementById('yup').checked) {
     self.port.emit('confirm','ok');
   }
-};
+}, false);
 
-var checkboxClicked = function(event) {
+document.getElementById('cancel').addEventListener('click', function() {
+  self.port.emit('cancel','Nope!');
+}, false);
+
+document.getElementById('yup').addEventListener('click', function(event) {
   document.getElementById('confirm').disabled = !event.target.checked;
-};
+}, false);
 
-var manageClicked = function() {
+document.getElementById('manage').addEventListener('click', function() {
   self.port.emit('manage','manage');
-};
-
-document.getElementById('confirm').addEventListener('click', confirmClicked, false);
-document.getElementById('cancel').addEventListener('click', cancelClicked, false);
-document.getElementById('yup').addEventListener('click', checkboxClicked, false);
-document.getElementById('manage').addEventListener('click', manageClicked, false);
+}, false);
